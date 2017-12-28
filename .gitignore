@@ -1,4 +1,6 @@
 *.out
+*.in
+*.csv
 *.o
 *.swo
 *.swap
