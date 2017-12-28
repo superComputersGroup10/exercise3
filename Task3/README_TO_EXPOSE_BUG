@@ -1,0 +1,25 @@
+================================================================================================================
+PURPOSE OF THIS README
+
+This file gives the infomation about the bug in the original implementation of cannon algorimthm provided in assignment 3
+=================================================================================================================
+
+
+=================================================================================================================
+HOW TO EXPOSE THE BUG
+
+The input files for cannon algorithm provided in this directory expose the bug in the original implementation
+provided along with the 3rd assignment. 
+
+The bug can be exposed by using the following combinations of input file provided. 
+
+1. mpiexc -n 4 ./cannon 2x4.dat 4x2.dat [test]
+2. mpiexc -n 4 ./cannon 4x4-1.dat 4x4-2.dat [test]
+3. mpiexc -n 9 ./cannon 3x3-1.dat 3x3-2.dat [test]
+4. mpiexc -n 9 ./cannon 3x3-1.dat 3x6.dat [test]
+=================================================================================================================
+
+
+=================================================================================================================
+REASON FOR THE BUG ***TODO***
+=================================================================================================================
