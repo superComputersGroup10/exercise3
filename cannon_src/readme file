@@ -1,0 +1,9 @@
+To run the cannon matrix multiplication do the following steps:
+
+1. issue make command
+
+2. copy the input matrix multiplication files from the cannon_matrices folder to cannon_source folder
+
+3. to run the executable type : mpiexec -n [number of processors] ./cannon [inputfile1] [input file2] [test] 
+Note : the last command line arugment [test] is optional if the user wants to see the output on the terminal
+
