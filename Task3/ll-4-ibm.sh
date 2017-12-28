@@ -19,7 +19,7 @@
 
 date
 echo -e "test on A(2x4) and B(4x2)" >> result.csv 
-mpiexec -n 4 ./cannon 2x4-1.dat 4x2.dat >> tee -a result.csv
+mpiexec -n 4 ./cannon 2x4.dat 4x2.dat >> result.csv
 echo -e '\n' >> result.csv 
 
 
