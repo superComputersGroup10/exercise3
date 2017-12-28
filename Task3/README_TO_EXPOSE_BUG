@@ -6,10 +6,14 @@ This file gives the infomation about the bug in the original implementation of c
 
 
 =================================================================================================================
-HOW TO EXPOSE THE BUG
+HOW TO EXPOSE THE BUG ON LOCAL PC
 
 The input files for cannon algorithm provided in this directory expose the bug in the original implementation
 provided along with the 3rd assignment. 
+
+Step 1: make
+
+Step 2: Run the command given below
 
 The bug can be exposed by using the following combinations of input file provided. 
 
@@ -17,6 +21,27 @@ The bug can be exposed by using the following combinations of input file provide
 2. mpiexc -n 4 ./cannon 4x4-1.dat 4x4-2.dat [test]
 3. mpiexc -n 9 ./cannon 3x3-1.dat 3x3-2.dat [test]
 4. mpiexc -n 9 ./cannon 3x3-1.dat 3x6.dat [test]
+=================================================================================================================
+
+
+=================================================================================================================
+HOW TO EXPOSE THE BUG ON superMUC
+
+The input files for cannon algorithm provided in this directory expose the bug in the original implementation
+provided along with the 3rd assignment. 
+
+Step 1: make
+
+Step 2a: Run the load leveller batch script : ll-4-ibm.sh for the following inputs:
+
+(i)  mpiexc -n 4 ./cannon 2x4.dat 4x2.dat [test]
+(ii) mpiexc -n 4 ./cannon 4x4-1.dat 4x4-2.dat [test]
+
+Step 2b: Run the load leveller batch script : ll-9-ibm.sh for the following inputs:
+
+(iii)  mpiexc -n 9 ./cannon 3x3-1.dat 3x3-2.dat [test]
+(iv)   mpiexc -n 9 ./cannon 3x3-1.dat 3x6.dat [test]
+
 =================================================================================================================
 
 
