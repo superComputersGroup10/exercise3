@@ -8,8 +8,8 @@ cat result_64x64.csv | awk -F'MPI time:         ' '{sum2+=$2; } END { print "Avg
 echo -e '\n' >> avg_results.csv
 
 echo -e "FOR MATRICES 128x128" >> avg_results.csv
-cat result_128x128.csv | awk -F'Computation time: ' '{sum3+=$2; } END { print "Avg Computation time:  = "su3/5 }' >> avg_results.csv
-cat result_128x128.csv | awk -F'MPI time:         ' '{sum4+=$2; } END { print "Avg MPI Time: "sum2"/"5 "="sum4/5 }' >> avg_results.csv
+cat result_128x128.csv | awk -F'Computation time: ' '{sum3+=$2; } END { print "Avg Computation time:  = "sum3/5 }' >> avg_results.csv
+cat result_128x128.csv | awk -F'MPI time:         ' '{sum4+=$2; } END { print "Avg MPI Time: "= "sum4/5 }' >> avg_results.csv
 echo -e '\n' >> avg_results.csv
 
 
@@ -21,7 +21,7 @@ echo -e '\n' >> avg_results.csv
 
 echo -e "FOR MATRICES 512x512" >> avg_results.csv
 cat result_512x512.csv | awk -F'Computation time: ' '{sum7+=$2; } END { print "Avg Computation time: = "sum7/5 }' >> avg_results.csv
-cat result_512x512.csv | awk -F'MPI time:         ' '{sum8+=$2; } END { print "Avg MPI Time: "sum2"/"5 "="sum8/5 }' >> avg_results.csv
+cat result_512x512.csv | awk -F'MPI time:         ' '{sum8+=$2; } END { print "Avg MPI Time: = "sum8/5 }' >> avg_results.csv
 echo -e '\n' >> avg_results.csv
 
 
