@@ -35,19 +35,21 @@ int main (int argc, char **argv) {
 	MPI_Cart_coords(cartesian_grid_communicator, rank, 2, coordinates);
 
 	// create a row communicator
-	remain_dims[0] = 0;            
-	remain_dims[1] = 1; 
+	remain_dims[0] = 0; //ignore the 0th direction 
+	remain_dims[1] = 1; //take all processes in 1st direction
 	MPI_Cart_sub(cartesian_grid_communicator, remain_dims, &row_communicator);
 
 	// create a column communicator
-	remain_dims[0] = 1;
-	remain_dims[1] = 0;
+	remain_dims[0] = 1; //take all processes in 0th direction
+	remain_dims[1] = 0; //ignore the 1st direction
 	MPI_Cart_sub(cartesian_grid_communicator, remain_dims, &column_communicator);
 
 	// getting matrices from files at rank 0 only
 	// example: mpiexec -n 64 ./cannon matrix1 matrix2 [test]
 	if (rank == 0){
 		int row, column;
+		
+		//scans the first matrix
 		if ((fp = fopen (argv[1], "r")) != NULL){
 			fscanf(fp, "%d %d\n", &matrices_a_b_dimensions[0], &matrices_a_b_dimensions[1]);
 			A = (double **) malloc (matrices_a_b_dimensions[0] * sizeof(double *));
@@ -61,6 +63,8 @@ int main (int argc, char **argv) {
 			if(rank == 0) fprintf(stderr, "error opening file for matrix A (%s)\n", argv[1]);
 			MPI_Abort(MPI_COMM_WORLD, -1);
 		}
+		
+		//scans the second matrix
 		if((fp = fopen (argv[2], "r")) != NULL){
 			fscanf(fp, "%d %d\n", &matrices_a_b_dimensions[2], &matrices_a_b_dimensions[3]);
 			B = (double **) malloc (matrices_a_b_dimensions[2] * sizeof(double *));
@@ -86,7 +90,7 @@ int main (int argc, char **argv) {
 			MPI_Abort(MPI_COMM_WORLD, -1);
 		}
 
-		// this implementation is limited to cases where thematrices can be partitioned perfectly
+		// this implementation is limited to cases where the matrices can be partitioned perfectly
 		if( matrices_a_b_dimensions[0] % sqrt_size != 0 
 				|| matrices_a_b_dimensions[1] % sqrt_size != 0 
 				|| matrices_a_b_dimensions[2] % sqrt_size != 0 
@@ -115,19 +119,19 @@ int main (int argc, char **argv) {
 	B_columns = matrices_a_b_dimensions[3];
 
 	// local metadata for A
-	A_local_block_rows = A_rows / sqrt_size;
-	A_local_block_columns = A_columns / sqrt_size;
+	A_local_block_rows = (int) (A_rows / sqrt_size);
+	A_local_block_columns = (int) (A_columns / sqrt_size);
 	A_local_block_size = A_local_block_rows * A_local_block_columns;
-	A_local_block = (double *) malloc (A_local_block_size * sizeof(double));
+	A_local_block = (double *) malloc (A_local_block_size * sizeof(double));  
 
 	// local metadata for B
-	B_local_block_rows = B_rows / sqrt_size;
-	B_local_block_columns = B_columns / sqrt_size;
+	B_local_block_rows = (int) B_rows / sqrt_size;
+	B_local_block_columns = (int) B_columns / sqrt_size;
 	B_local_block_size = B_local_block_rows * B_local_block_columns;
 	B_local_block = (double *) malloc (B_local_block_size * sizeof(double));
 
 	// local metadata for C
-	C_local_block = (double *) malloc (A_local_block_rows * B_local_block_columns * sizeof(double));
+	C_local_block = (double *) malloc (A_local_block_rows * B_local_block_columns * sizeof(double)); 
 	// C needs to be initialized at 0 (accumulates partial dot-products)
 	int i;
 	for(i=0; i < A_local_block_rows * B_local_block_columns; i++){
@@ -181,10 +185,22 @@ int main (int argc, char **argv) {
 		MPI_Recv(A_local_block, A_local_block_size, MPI_DOUBLE, 0, 0, cartesian_grid_communicator, &status);
 		MPI_Recv(B_local_block, B_local_block_size, MPI_DOUBLE, 0, 0, cartesian_grid_communicator, &status);
 	}
+	
+    //Initial matrix alignment for A and B
+        int shift_source, shift_destination;
+        MPI_Cart_shift(row_communicator, 0, -coordinates[0], &shift_source, &shift_destination);
+        MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE,
+                  shift_destination, 0, 
+                 shift_source, 0, row_communicator, &status);
+
+        MPI_Cart_shift(column_communicator, 0, -coordinates[1], &shift_source, &shift_destination);
+        MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
+                 shift_destination, 0, 
+                 shift_source, 0, column_communicator, &status);
 
 	// cannon's algorithm
 	int cannon_block_cycle;
-	double compute_time = 0, mpi_time = 0, start;
+	double compute_time = 0, mpi_time = 0, start;   //all ranks declare compute_time, mpi_time
 	int C_index, A_row, A_column, B_column;
 	for(cannon_block_cycle = 0; cannon_block_cycle < sqrt_size; cannon_block_cycle++){
 		// compute partial result for this block cycle
@@ -197,7 +213,8 @@ int main (int argc, char **argv) {
 				}
 			}
 		}
-		compute_time += MPI_Wtime() - start;
+
+		compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
 		start = MPI_Wtime();
 		// rotate blocks horizontally
 		MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE, 
@@ -241,7 +258,7 @@ int main (int argc, char **argv) {
 		}
 
 		printf("(%d,%d)x(%d,%d)=(%d,%d)\n", A_rows, A_columns, B_rows, B_columns, A_rows, B_columns);
-		printf("Computation time: %lf\n", compute_time);
+		printf("Computation time: %lf\n", compute_time);    
 		printf("MPI time:         %lf\n", mpi_time);
 
 		if (argc == 4){
@@ -270,7 +287,7 @@ int main (int argc, char **argv) {
 			fflush(stdout);
 			int pass = 1;
 			double temp;
-			for(i=0; i<A_rows; i++){
+			for(i=0; i<A_rows; i++){ //haha .. row-column-k form. Old school! :P
 				for(j=0; j<B_columns; j++){
 					temp = 0;
 					for(k=0; k<B_rows; k++){
@@ -314,4 +331,3 @@ int main (int argc, char **argv) {
 	// finalize MPI
 	MPI_Finalize();
 }
-
