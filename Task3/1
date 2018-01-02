@@ -188,12 +188,12 @@ int main (int argc, char **argv) {
 	
     //Initial matrix alignment for A and B
         int shift_source, shift_destination;
-        MPI_Cart_shift(row_communicator, 0, -coordinates[0], &shift_source, &shift_destination);
+        MPI_Cart_shift(cartesian_grid_communicator, 0, -coordinates[0], &shift_source, &shift_destination);
         MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE,
                   shift_destination, 0, 
                  shift_source, 0, row_communicator, &status);
 
-        MPI_Cart_shift(column_communicator, 0, -coordinates[1], &shift_source, &shift_destination);
+        MPI_Cart_shift(cartesian_grid_communicator, 1, -coordinates[1], &shift_source, &shift_destination);
         MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
                  shift_destination, 0, 
                  shift_source, 0, column_communicator, &status);
