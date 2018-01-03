@@ -1,0 +1,35 @@
+FOR MATRICES  64x64
+Avg Computation time: = 8.16667e-06
+Avg MPI Time: = 0.000415167
+
+
+FOR MATRICES  128x128
+Avg Computation time: = 4.55e-05
+Avg MPI Time: = 0.000544
+
+
+FOR MATRICES  256x256
+Avg Computation time: = 0.000230167
+Avg MPI Time: = 0.000715167
+
+
+FOR MATRICES  512x512
+Avg Computation time: = 0.0014
+Avg MPI Time: = 0.0021115
+
+
+FOR MATRICES  1024x1024
+Avg Computation time: = 0.0207048
+Avg MPI Time: = 0.0118032
+
+
+FOR MATRICES  2048x2048
+Avg Computation time: = 0.333405
+Avg MPI Time: = 0.0358757
+
+
+FOR MATRICES  4096x4096
+Avg Computation time: = 2.77479
+Avg MPI Time: = 0.162065
+
+
