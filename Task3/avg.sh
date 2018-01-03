@@ -2,7 +2,6 @@
 
 rm avg_results.csv
 
-
 for j in {0..6}
 do
 	current_size=$((2**(6+j)))
