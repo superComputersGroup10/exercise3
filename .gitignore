@@ -1,7 +1,6 @@
 *.out
 cannon
 *.in
-*.csv
 *.o
 *.swo
 *.swap
