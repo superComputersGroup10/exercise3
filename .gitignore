@@ -3,6 +3,7 @@ cannon
 *.in
 *.o
 *.swo
+*.swp
 *.swap
 *.pdf
 *.log
