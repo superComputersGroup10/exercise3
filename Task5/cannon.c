@@ -8,6 +8,7 @@ int main (int argc, char **argv) {
     FILE *fp;
     double **A = NULL, **B = NULL, **C = NULL, *A_array = NULL, *B_array = NULL, *C_array = NULL;
     double *A_local_block = NULL, *B_local_block = NULL, *C_local_block = NULL;
+    double *A_local_buffer = NULL, *B_local_buffer = NULL;
     int A_rows, A_columns, A_local_block_rows, A_local_block_columns, A_local_block_size;
     int B_rows, B_columns, B_local_block_rows, B_local_block_columns, B_local_block_size;
     int rank, size, sqrt_size, matrices_a_b_dimensions[4];
@@ -123,12 +124,14 @@ int main (int argc, char **argv) {
     A_local_block_columns = (int) (A_columns / sqrt_size);
     A_local_block_size = A_local_block_rows * A_local_block_columns;
     A_local_block = (double *) malloc (A_local_block_size * sizeof(double));  
+    A_local_buffer = (double *) malloc (A_local_block_size * sizeof(double));  
 
     // local metadata for B
     B_local_block_rows = (int) B_rows / sqrt_size;
     B_local_block_columns = (int) B_columns / sqrt_size;
     B_local_block_size = B_local_block_rows * B_local_block_columns;
     B_local_block = (double *) malloc (B_local_block_size * sizeof(double));
+    B_local_buffer = (double *) malloc (B_local_block_size * sizeof(double));
 
     // local metadata for C
     C_local_block = (double *) malloc (A_local_block_rows * B_local_block_columns * sizeof(double)); 
@@ -198,6 +201,7 @@ int main (int argc, char **argv) {
             shift_destination, 0, 
             shift_source, 0, column_communicator, &status);
 
+    //TODO: implement one side comm in this part //////////////////////////////////////////////////////////////////////////////
     // cannon's algorithm
     int cannon_block_cycle;
     double compute_time = 0, mpi_time = 0, start;   //all ranks declare compute_time, mpi_time
@@ -226,6 +230,7 @@ int main (int argc, char **argv) {
                 (coordinates[0] + 1) % sqrt_size, 0, column_communicator, &status);
         mpi_time += MPI_Wtime() - start;
     }
+    //TODO: end of oneside comm /////////////////////////////////////////////////////////////////////////////////////////////////
 
     // get C parts from other processes at rank 0
     if(rank == 0) {
@@ -325,7 +330,9 @@ int main (int argc, char **argv) {
         free(C_array);
     }
     free(A_local_block);
+    free(A_local_buffer);
     free(B_local_block);
+    free(B_local_buffer);
     free(C_local_block);
 
     // finalize MPI
