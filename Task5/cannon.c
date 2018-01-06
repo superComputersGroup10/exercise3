@@ -232,12 +232,14 @@ int main (int argc, char **argv) {
                 //(coordinates[1] + 1) % sqrt_size, 0, row_communicator, &status);
         MPI_Get(A_local_buffer, A_local_block_size, MPI_DOUBLE, (coordinates[1]+cannon_block_cycle) % sqrt_size, 
                 0, A_local_block_size, MPI_DOUBLE, row_win);
+        MPI_Win_fence(0, row_win);
         // get the vertical data
         //MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
                 //(coordinates[0] + sqrt_size - 1) % sqrt_size, 0, 
                 //(coordinates[0] + 1) % sqrt_size, 0, column_communicator, &status);
         MPI_Get(B_local_buffer, B_local_block_size, MPI_DOUBLE, (coordinates[0]+cannon_block_cycle) % sqrt_size, 
                 0, B_local_block_size, MPI_DOUBLE, column_win);
+        MPI_Win_fence(0, column_win);
         mpi_time += MPI_Wtime() - start;
         // compute partial result for this block cycle
         start = MPI_Wtime();
