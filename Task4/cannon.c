@@ -263,25 +263,24 @@ int main (int argc, char **argv) {
 
 		if (argc == 4){
 			// present results on the screen
-			printf("\nA( %d x %d ):\n", A_rows, A_columns);
-			for(row = 0; row < A_rows; row++) {
-				for(column = 0; column < A_columns; column++)
-					printf ("%7.3f ", A[row][column]);
-				printf ("\n");
-			}
-			printf("\nB( %d x %d ):\n", B_rows, B_columns);
-			for(row = 0; row < B_rows; row++){
-				for(column = 0; column < B_columns; column++)
-					printf("%7.3f ", B[row][column]);
-				printf("\n");
-			}
-			printf("\nC( %d x %d ) = AxB:\n", A_rows, B_columns);
-			for(row = 0; row < A_rows; row++){
-				for(column = 0; column < B_columns; column++)
-					printf("%7.3f ",C[row][column]);
-				printf("\n");
-			}
-
+	//		printf("\nA( %d x %d ):\n", A_rows, A_columns);
+	//		for(row = 0; row < A_rows; row++) {
+	//			for(column = 0; column < A_columns; column++)
+	//				printf ("%7.3f ", A[row][column]);
+	//			printf ("\n");
+	//		}
+	//		printf("\nB( %d x %d ):\n", B_rows, B_columns);
+	//		for(row = 0; row < B_rows; row++){
+	//			for(column = 0; column < B_columns; column++)
+	//				printf("%7.3f ", B[row][column]);
+	//			printf("\n");
+	//		}
+	//		printf("\nC( %d x %d ) = AxB:\n", A_rows, B_columns);
+	//		for(row = 0; row < A_rows; row++){
+	//			for(column = 0; column < B_columns; column++)
+	//				printf("%7.3f ",C[row][column]);
+	//			printf("\n");
+	//		}
 
 			printf("\nPerforming serial consistency check. Be patient...\n");
 			fflush(stdout);
@@ -293,12 +292,12 @@ int main (int argc, char **argv) {
 					for(k=0; k<B_rows; k++){
 						temp += A[i][k] * B[k][j];
 					}
-					printf("%7.3f ", temp);
+		//			printf("%7.3f ", temp);
 					if(temp != C[i][j]){
 						pass = 0;
 					}
 				}
-				printf("\n");
+		//		printf("\n");
 			}
 			if (pass) printf("Consistency check: PASS\n");
 			else printf("Consistency check: FAIL\n");
