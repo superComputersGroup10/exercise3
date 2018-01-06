@@ -202,33 +202,55 @@ int main (int argc, char **argv) {
             shift_source, 0, column_communicator, &status);
 
     //TODO: implement one side comm in this part //////////////////////////////////////////////////////////////////////////////
+    // Declaring windows for oneside communication
+    MPI_Win row_win, column_win;
+    MPI_Win_create (A_local_block, A_local_block_size, sizeof(double), MPI_INFO_NULL, row_communicator, &row_win);
+    MPI_Win_create (B_local_block, B_local_block_size, sizeof(double), MPI_INFO_NULL, column_communicator, &column_win);
+    MPI_Win_fence(0, row_win);
+    MPI_Win_fence(0, column_win);
+
     // cannon's algorithm
+    // doing the operationg with the local data
+    //start = MPI_Wtime(); //TODO: figure out where to measure the time here
     int cannon_block_cycle;
     double compute_time = 0, mpi_time = 0, start;   //all ranks declare compute_time, mpi_time
     int C_index, A_row, A_column, B_column;
-    for(cannon_block_cycle = 0; cannon_block_cycle < sqrt_size; cannon_block_cycle++){
+    for(C_index = 0, A_row = 0; A_row < A_local_block_rows; A_row++){
+        for(B_column = 0; B_column < B_local_block_columns; B_column++, C_index++){
+            for(A_column = 0; A_column < A_local_block_columns; A_column++){
+                C_local_block[C_index] += A_local_block[A_row * A_local_block_columns + A_column] *
+                    B_local_block[A_column * B_local_block_columns + B_column];
+            }
+        }
+    }
+    //compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
+
+    for(cannon_block_cycle = 1; cannon_block_cycle < sqrt_size; cannon_block_cycle++){
+        // get the horizontal data
+        //MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE, 
+                //(coordinates[1] + sqrt_size - 1) % sqrt_size, 0, 
+                //(coordinates[1] + 1) % sqrt_size, 0, row_communicator, &status);
+        MPI_Get(A_local_buffer, A_local_block_size, MPI_DOUBLE, (coordinates[1]+cannon_block_cycle) % sqrt_size, 
+                0, A_local_block_size, MPI_DOUBLE, row_win);
+        // get the vertical data
+        //MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
+                //(coordinates[0] + sqrt_size - 1) % sqrt_size, 0, 
+                //(coordinates[0] + 1) % sqrt_size, 0, column_communicator, &status);
+        MPI_Get(B_local_buffer, B_local_block_size, MPI_DOUBLE, (coordinates[0]+cannon_block_cycle) % sqrt_size, 
+                0, B_local_block_size, MPI_DOUBLE, column_win);
+        mpi_time += MPI_Wtime() - start;
         // compute partial result for this block cycle
         start = MPI_Wtime();
         for(C_index = 0, A_row = 0; A_row < A_local_block_rows; A_row++){
             for(B_column = 0; B_column < B_local_block_columns; B_column++, C_index++){
                 for(A_column = 0; A_column < A_local_block_columns; A_column++){
-                    C_local_block[C_index] += A_local_block[A_row * A_local_block_columns + A_column] *
-                        B_local_block[A_column * B_local_block_columns + B_column];
+                    C_local_block[C_index] += A_local_buffer[A_row * A_local_block_columns + A_column] *
+                        B_local_buffer[A_column * B_local_block_columns + B_column];
                 }
             }
         }
-
         compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
         start = MPI_Wtime();
-        // rotate blocks horizontally
-        MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE, 
-                (coordinates[1] + sqrt_size - 1) % sqrt_size, 0, 
-                (coordinates[1] + 1) % sqrt_size, 0, row_communicator, &status);
-        // rotate blocks vertically
-        MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
-                (coordinates[0] + sqrt_size - 1) % sqrt_size, 0, 
-                (coordinates[0] + 1) % sqrt_size, 0, column_communicator, &status);
-        mpi_time += MPI_Wtime() - start;
     }
     //TODO: end of oneside comm /////////////////////////////////////////////////////////////////////////////////////////////////
 
