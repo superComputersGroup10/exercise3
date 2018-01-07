@@ -106,8 +106,9 @@ int main (int argc, char **argv) {
 	// send dimensions to all peers
 	if(rank == 0) {
 		int i;
+        MPI_Request request1;
 		for(i = 1; i < size; i++){
-			MPI_Send(matrices_a_b_dimensions, 4, MPI_INT, i, 0, cartesian_grid_communicator);
+			MPI_Isend(matrices_a_b_dimensions, 4, MPI_INT, i, 0, cartesian_grid_communicator, &request1);
 		}
 	} else {
 		MPI_Recv(matrices_a_b_dimensions, 4, MPI_INT, 0, 0, cartesian_grid_communicator, &status);
@@ -168,41 +169,78 @@ int main (int argc, char **argv) {
 		}
 	} 
 
+    MPI_Request requests[4];
+    MPI_Status statuses[4];
 	// send a block to each process
 	if(rank == 0) {
 		int i;
 		for(i = 1; i < size; i++){
-			MPI_Send((A_array + (i * A_local_block_size)), A_local_block_size, MPI_DOUBLE, i, 0, cartesian_grid_communicator);
-			MPI_Send((B_array + (i * B_local_block_size)), B_local_block_size, MPI_DOUBLE, i, 0, cartesian_grid_communicator);
+		//	MPI_Send((A_array + (i * A_local_block_size)), A_local_block_size, MPI_DOUBLE, i, 0, cartesian_grid_communicator);
+		//	MPI_Send((B_array + (i * B_local_block_size)), B_local_block_size, MPI_DOUBLE, i, 0, cartesian_grid_communicator);
+			MPI_Isend((A_array + (i * A_local_block_size)), A_local_block_size, MPI_DOUBLE, i, 0, cartesian_grid_communicator, &requests[0]);
+			MPI_Isend((B_array + (i * B_local_block_size)), B_local_block_size, MPI_DOUBLE, i, 0, cartesian_grid_communicator, &requests[1]);
+            
+            //overlap the copying to local block matrices with sending
+            // if condition ensures copying happens only once
+            if(i==1){
+                int j;
+		        for(j = 0; j < A_local_block_size; j++){
+			            A_local_block[j] = A_array[j];
+		        }
+		        for(j = 0; j < B_local_block_size; j++){
+			            B_local_block[j] = B_array[j];
+		        }
+            }
 		}
-		for(i = 0; i < A_local_block_size; i++){
-			A_local_block[i] = A_array[i];
-		}
-		for(i = 0; i < B_local_block_size; i++){
-			B_local_block[i] = B_array[i];
-		}
+//		for(i = 0; i < A_local_block_size; i++){
+//			A_local_block[i] = A_array[i];
+//		}
+//		for(i = 0; i < B_local_block_size; i++){
+//			B_local_block[i] = B_array[i];
+//		}
 	} else {
 		MPI_Recv(A_local_block, A_local_block_size, MPI_DOUBLE, 0, 0, cartesian_grid_communicator, &status);
 		MPI_Recv(B_local_block, B_local_block_size, MPI_DOUBLE, 0, 0, cartesian_grid_communicator, &status);
 	}
 	
     //Initial matrix alignment for A and B
-        int shift_source, shift_destination;
-        MPI_Cart_shift(row_communicator, 0, -coordinates[0], &shift_source, &shift_destination);
-        MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE,
-                  shift_destination, 0, 
-                 shift_source, 0, row_communicator, &status);
+        int hshift_source, hshift_destination, vshift_source, vshift_destination;
 
-        MPI_Cart_shift(column_communicator, 0, -coordinates[1], &shift_source, &shift_destination);
-        MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
-                 shift_destination, 0, 
-                 shift_source, 0, column_communicator, &status);
+        //Horizontal shifts
+        MPI_Cart_shift(row_communicator, 0, -coordinates[0], &hshift_source, &hshift_destination);
+        MPI_Isend(A_local_block, A_local_block_size, MPI_DOUBLE, hshift_destination, 10, row_communicator, &requests[0]);
+        MPI_Irecv(A_local_block, A_local_block_size, MPI_DOUBLE, hshift_source, 10, row_communicator, &requests[2]);
+
+        //vertical shifts
+        MPI_Cart_shift(column_communicator, 0, -coordinates[1], &vshift_source, &vshift_destination);
+        MPI_Irecv(B_local_block, B_local_block_size, MPI_DOUBLE, vshift_source, 11, column_communicator, &requests[3]);
+        MPI_Isend(B_local_block, B_local_block_size, MPI_DOUBLE, vshift_destination, 11, column_communicator, &requests[1]);
+
+        //wait for all shifts finish
+        MPI_Waitall(4, requests, statuses);
+      //  MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE,
+      //            shift_destination, 0, 
+      //           shift_source, 0, row_communicator, &status);
+
+      //  MPI_Cart_shift(column_communicator, 0, -coordinates[1], &shift_source, &shift_destination);
+      //  MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
+      //           shift_destination, 0, 
+      //           shift_source, 0, column_communicator, &status);
 
 	// cannon's algorithm
 	int cannon_block_cycle;
 	double compute_time = 0, mpi_time = 0, start;   //all ranks declare compute_time, mpi_time
 	int C_index, A_row, A_column, B_column;
-	for(cannon_block_cycle = 0; cannon_block_cycle < sqrt_size; cannon_block_cycle++){
+    double *A_local_block_temp = (double *) malloc(A_local_block_size * sizeof(double));
+    double *B_local_block_temp = (double *) malloc(B_local_block_size * sizeof(double));
+	for(cannon_block_cycle = 0; cannon_block_cycle < sqrt_size - 1; cannon_block_cycle++){
+
+		start = MPI_Wtime();
+        MPI_Isend(A_local_block, A_local_block_size, MPI_DOUBLE,
+                  (coordinates[1] + sqrt_size - 1)%sqrt_size, 12, row_communicator, &requests[0]);
+        MPI_Isend(B_local_block, B_local_block_size, MPI_DOUBLE,
+                  (coordinates[0] + sqrt_size - 1)%sqrt_size, 13, column_communicator, &requests[1]);
+		mpi_time += MPI_Wtime() - start;
 		// compute partial result for this block cycle
 		start = MPI_Wtime();
 		for(C_index = 0, A_row = 0; A_row < A_local_block_rows; A_row++){
@@ -216,16 +254,36 @@ int main (int argc, char **argv) {
 
 		compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
 		start = MPI_Wtime();
-		// rotate blocks horizontally
-		MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE, 
-				(coordinates[1] + sqrt_size - 1) % sqrt_size, 0, 
-				(coordinates[1] + 1) % sqrt_size, 0, row_communicator, &status);
-		// rotate blocks vertically
-		MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
-				(coordinates[0] + sqrt_size - 1) % sqrt_size, 0, 
-				(coordinates[0] + 1) % sqrt_size, 0, column_communicator, &status);
+//		// rotate blocks horizontally
+//		MPI_Sendrecv_replace(A_local_block, A_local_block_size, MPI_DOUBLE, 
+//				(coordinates[1] + sqrt_size - 1) % sqrt_size, 0, 
+//				(coordinates[1] + 1) % sqrt_size, 0, row_communicator, &status);
+//    
+//		// rotate blocks vertically
+//		MPI_Sendrecv_replace(B_local_block, B_local_block_size, MPI_DOUBLE, 
+//				(coordinates[0] + sqrt_size - 1) % sqrt_size, 0, 
+//				(coordinates[0] + 1) % sqrt_size, 0, column_communicator, &status);
+        MPI_Irecv(A_local_block_temp, A_local_block_size, MPI_DOUBLE, 
+                    (coordinates[1] + 1)%sqrt_size, 12, row_communicator, &requests[2]);
+        MPI_Irecv(B_local_block_temp, B_local_block_size, MPI_DOUBLE, 
+                    (coordinates[0] + 1)%sqrt_size, 13, column_communicator, &requests[3]);
+        MPI_Waitall(4, requests, statuses);
 		mpi_time += MPI_Wtime() - start;
+        A_local_block = A_local_block_temp;
+        B_local_block = B_local_block_temp;
 	}
+		// compute partial result for the last block cycle
+		start = MPI_Wtime();
+		for(C_index = 0, A_row = 0; A_row < A_local_block_rows; A_row++){
+			for(B_column = 0; B_column < B_local_block_columns; B_column++, C_index++){
+				for(A_column = 0; A_column < A_local_block_columns; A_column++){
+					C_local_block[C_index] += A_local_block[A_row * A_local_block_columns + A_column] *
+						B_local_block[A_column * B_local_block_columns + B_column];
+				}
+			}
+		}
+
+		compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
 
 	// get C parts from other processes at rank 0
 	if(rank == 0) {
