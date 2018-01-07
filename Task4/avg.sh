@@ -19,11 +19,20 @@ do
        # echo -e $READ_FILE
        # echo -e $WRITE_FILE
 
-	    echo -e "FOR MATRICES " $matrix >> $WRITE_FILE 
-	    cat $READ_FILE | awk -F'Computation time: ' '{sum1+=$2; } END { print "Avg Computation time: = " sum1/6 }' >> $WRITE_FILE 
-	   # cat $READ_FILE | awk -F'Computation time: ' '{$array_compute_time[$i++]=$2; } END' 
-
-	    cat $READ_FILE | awk -F'MPI time: ' '{sum2+=$2; } END { print "Avg MPI Time: = " sum2/6 }' >> $WRITE_FILE 
+    echo -e "FOR MATRICES " $matrix >> $WRITE_FILE 
+    awk -F'Computation time: ' '{sum1+=$2; } END { print "Avg Computation time: = " sum1/6 }' $READ_FILE >> $WRITE_FILE 
+    mapfile -t array_compute_time < <( awk -F'Computation time: ' '{print $2 }' "$READ_FILE" ) 
+    awk -F'MPI time: ' '{sum2+=$2; } END { print "Avg MPI Time: = " sum2/6 }' $READ_FILE >> $WRITE_FILE 
     echo -e '\n' >> $WRITE_FILE
+    
+   # compute_time_sum=0
+    for each in ${array_compute_time[@]}
+    do
+        echo $each
+        #let compute_time_sum+=$each 
     done
+    #echo -e "current matrix size: $matrix\nTotal Compute time: $compute_time_sum\n"
+    
+done
+
 done 
