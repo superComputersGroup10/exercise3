@@ -17,7 +17,7 @@
 . /etc/profile
 . /etc/profile.d/modules.sh
 
-	for k in {0..6}
+	for k in {0..7}
 	do	
 		SUPERMUC_PHASE="Phase1"
 		CURRENT_SIZE=$((2**(6+k)))
