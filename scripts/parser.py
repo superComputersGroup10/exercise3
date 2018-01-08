@@ -3,6 +3,7 @@
 import argparse
 import re
 import csv
+import math
 
 
 def get_data(filename):
@@ -20,8 +21,11 @@ def get_data(filename):
 
 
 def get_mean(data):
-    return sum(data) / len(data)
+    return math.fsum(data) / len(data)
 
+
+def get_var(data, mean):
+    return math.fsum([(mean - val)*(mean - val) for val in data]) / len(data)
 
 def main():
     parser = argparse.ArgumentParser(description="Generates a .csv with the time results")
@@ -34,6 +38,10 @@ def main():
         computation_times, mpi_times = get_data(f)
         mean_computation = get_mean(computation_times)
         mean_mpi = get_mean(mpi_times)
+        var_computation = get_var(computation_times, mean_computation)
+        var_mpi = get_var(mpi_times, mean_mpi)
+        sd_computation = math.sqrt(var_computation)
+        sd_mpi = math.sqrt(var_mpi)
 
 
 if __name__ == "__main__":
