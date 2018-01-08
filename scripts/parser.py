@@ -13,7 +13,9 @@ def get_data(filename):
     with open(filename, 'r') as f:
         text = f.read()
     computation_times = re.findall(r'Computation time:\s+(\d+\.\d+)', text)
+    mpi_times = re.findall(r'MPI time:\s+(\d+\.\d+)', text)
     print(computation_times)
+    print(mpi_times)
 
 
 def main():
