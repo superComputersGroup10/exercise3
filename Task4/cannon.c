@@ -225,13 +225,16 @@ int main (int argc, char **argv) {
     for(cannon_block_cycle = 0; cannon_block_cycle < sqrt_size - 1; cannon_block_cycle++){
 
 		mpi_start = MPI_Wtime();
+		// rotate blocks horizontally
         MPI_Isend(A_local_block, A_local_block_size, MPI_DOUBLE,
                   (coordinates[1] + sqrt_size - 1)%sqrt_size, 12, row_communicator, &requests[0]);
+        MPI_Irecv(A_local_block_temp, A_local_block_size, MPI_DOUBLE, 
+                    (coordinates[1] + 1)%sqrt_size, 12, row_communicator, &requests[2]);
+
+		// rotate blocks vertically
         MPI_Isend(B_local_block, B_local_block_size, MPI_DOUBLE,
                   (coordinates[0] + sqrt_size - 1)%sqrt_size, 13, column_communicator, &requests[1]);
 
-        MPI_Irecv(A_local_block_temp, A_local_block_size, MPI_DOUBLE, 
-                    (coordinates[1] + 1)%sqrt_size, 12, row_communicator, &requests[2]);
         MPI_Irecv(B_local_block_temp, B_local_block_size, MPI_DOUBLE, 
                     (coordinates[0] + 1)%sqrt_size, 13, column_communicator, &requests[3]);
 
@@ -247,9 +250,7 @@ int main (int argc, char **argv) {
 		}
 
 		compute_time += MPI_Wtime() - compute_start;        //each rank accumulates the compute_time
-//		// rotate blocks horizontally
 //    
-//		// rotate blocks vertically
         MPI_Waitall(4, requests, statuses);
 		mpi_time += MPI_Wtime() - mpi_start;
 
