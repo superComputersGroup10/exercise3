@@ -214,7 +214,7 @@ int main (int argc, char **argv) {
     double compute_time = 0, mpi_time = 0, start;   //all ranks declare compute_time, mpi_time
     int C_index, A_row, A_column, B_column;
 
-    start = MPI_Wtime(); //TODO: figure out where to measure the time here
+    start = MPI_Wtime(); 
     for(C_index = 0, A_row = 0; A_row < A_local_block_rows; A_row++){
         for(B_column = 0; B_column < B_local_block_columns; B_column++, C_index++){
             for(A_column = 0; A_column < A_local_block_columns; A_column++){
@@ -226,6 +226,7 @@ int main (int argc, char **argv) {
     compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
 
     for(cannon_block_cycle = 1; cannon_block_cycle < sqrt_size; cannon_block_cycle++){
+        start = MPI_Wtime(); 
         // get the horizontal data
         MPI_Get(A_local_buffer, A_local_block_size, MPI_DOUBLE, (coordinates[1]+cannon_block_cycle) % sqrt_size, 
                 0, A_local_block_size, MPI_DOUBLE, row_win);
@@ -248,7 +249,6 @@ int main (int argc, char **argv) {
             }
         }
         compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
-        start = MPI_Wtime();
     }
     // cannon's algorithm end///////////////////////////////////////////////////////////////////////////////////////
 
