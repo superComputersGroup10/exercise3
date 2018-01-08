@@ -27,7 +27,7 @@ def main():
     args = parser.parse_args()
 
     for f in args.files:
-        get_data(f)
+        computation_times, mpi_times = get_data(f)
 
 if __name__ == "__main__":
     main()
