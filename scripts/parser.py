@@ -12,10 +12,11 @@ def get_data(filename):
     """
     with open(filename, 'r') as f:
         text = f.read()
-    computation_times = re.findall(r'Computation time:\s+(\d+\.\d+)', text)
-    mpi_times = re.findall(r'MPI time:\s+(\d+\.\d+)', text)
-    print(computation_times)
-    print(mpi_times)
+    r_computation_times = re.findall(r'Computation time:\s+(\d+\.\d+)', text)
+    r_mpi_times = re.findall(r'MPI time:\s+(\d+\.\d+)', text)
+    computation_times = [float(i) for i in r_computation_times]
+    mpi_times = [float(i) for i in r_mpi_times]
+    return computation_times, mpi_times
 
 
 def main():
