@@ -19,6 +19,10 @@ def get_data(filename):
     return computation_times, mpi_times
 
 
+def get_mean(data):
+    return sum(data) / len(data)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Generates a .csv with the time results")
     parser.add_argument("-f", "--files", nargs = '*', help="List of files with time results")
@@ -28,6 +32,9 @@ def main():
 
     for f in args.files:
         computation_times, mpi_times = get_data(f)
+        mean_computation = get_mean(computation_times)
+        mean_mpi = get_mean(mpi_times)
+
 
 if __name__ == "__main__":
     main()
