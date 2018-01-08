@@ -8,7 +8,8 @@ int main (int argc, char **argv) {
     FILE *fp;
     double **A = NULL, **B = NULL, **C = NULL, *A_array = NULL, *B_array = NULL, *C_array = NULL;
     double *A_local_block = NULL, *B_local_block = NULL, *C_local_block = NULL;
-    double *A_local_buffer = NULL, *B_local_buffer = NULL;
+    double *A_local_buffer = NULL, *B_local_buffer = NULL, *A_local_buffer_temp = NULL, *B_local_buffer_temp = NULL, *Swap = NULL;
+
     int A_rows, A_columns, A_local_block_rows, A_local_block_columns, A_local_block_size;
     int B_rows, B_columns, B_local_block_rows, B_local_block_columns, B_local_block_size;
     int rank, size, sqrt_size, matrices_a_b_dimensions[4];
@@ -125,6 +126,7 @@ int main (int argc, char **argv) {
     A_local_block_size = A_local_block_rows * A_local_block_columns;
     A_local_block = (double *) malloc (A_local_block_size * sizeof(double));  
     A_local_buffer = (double *) malloc (A_local_block_size * sizeof(double));  
+    A_local_buffer_temp = (double *) malloc (A_local_block_size * sizeof(double));  
 
     // local metadata for B
     B_local_block_rows = (int) B_rows / sqrt_size;
@@ -132,6 +134,7 @@ int main (int argc, char **argv) {
     B_local_block_size = B_local_block_rows * B_local_block_columns;
     B_local_block = (double *) malloc (B_local_block_size * sizeof(double));
     B_local_buffer = (double *) malloc (B_local_block_size * sizeof(double));
+    B_local_buffer_temp = (double *) malloc (B_local_block_size * sizeof(double));
 
     // local metadata for C
     C_local_block = (double *) malloc (A_local_block_rows * B_local_block_columns * sizeof(double)); 
@@ -211,10 +214,23 @@ int main (int argc, char **argv) {
     // cannon's algorithm //////////////////////////////////////////////////////////////////////////////////////////
     // doing the operationg with the local data
     int cannon_block_cycle;
-    double compute_time = 0, mpi_time = 0, start;   //all ranks declare compute_time, mpi_time
+    double compute_time = 0, mpi_time = 0, start_mpi, start_compute;   //all ranks declare compute_time, mpi_time
     int C_index, A_row, A_column, B_column;
 
-    start = MPI_Wtime(); 
+
+    if(size > 1){ //if there is more than 1 process starts with the communication to overlap with computation
+        start_mpi = MPI_Wtime(); 
+        //Initial communication
+        cannon_block_cycle = 1;
+        // get the horizontal data
+        MPI_Get(A_local_buffer, A_local_block_size, MPI_DOUBLE, (coordinates[1]+cannon_block_cycle) % sqrt_size, 
+                0, A_local_block_size, MPI_DOUBLE, row_win);
+        // get the vertical data
+        MPI_Get(B_local_buffer, B_local_block_size, MPI_DOUBLE, (coordinates[0]+cannon_block_cycle) % sqrt_size, 
+                0, B_local_block_size, MPI_DOUBLE, column_win);
+    }
+
+    start_compute = MPI_Wtime(); 
     for(C_index = 0, A_row = 0; A_row < A_local_block_rows; A_row++){
         for(B_column = 0; B_column < B_local_block_columns; B_column++, C_index++){
             for(A_column = 0; A_column < A_local_block_columns; A_column++){
@@ -223,23 +239,47 @@ int main (int argc, char **argv) {
             }
         }
     }
-    compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
+    compute_time += MPI_Wtime() - start_compute;        //each rank accumulates the compute_time
 
-    for(cannon_block_cycle = 1; cannon_block_cycle < sqrt_size; cannon_block_cycle++){
-        start = MPI_Wtime(); 
-        // get the horizontal data
-        MPI_Get(A_local_buffer, A_local_block_size, MPI_DOUBLE, (coordinates[1]+cannon_block_cycle) % sqrt_size, 
-                0, A_local_block_size, MPI_DOUBLE, row_win);
-        // get the vertical data
-        MPI_Get(B_local_buffer, B_local_block_size, MPI_DOUBLE, (coordinates[0]+cannon_block_cycle) % sqrt_size, 
-                0, B_local_block_size, MPI_DOUBLE, column_win);
-        //wait till comunication is done
+    if(size > 1){ //continue with the comunication and overlaped computation 
         MPI_Win_fence(0, row_win);
         MPI_Win_fence(0, column_win);
-        mpi_time += MPI_Wtime() - start;
+        mpi_time += MPI_Wtime() - start_mpi;
 
-        // compute partial result for this block cycle
-        start = MPI_Wtime();
+        for(cannon_block_cycle = 2; cannon_block_cycle < sqrt_size; cannon_block_cycle++){
+            start_mpi = MPI_Wtime(); 
+            // get the horizontal data
+            MPI_Get(A_local_buffer_temp, A_local_block_size, MPI_DOUBLE, (coordinates[1]+cannon_block_cycle) % sqrt_size, 
+                    0, A_local_block_size, MPI_DOUBLE, row_win);
+            // get the vertical data
+            MPI_Get(B_local_buffer_temp, B_local_block_size, MPI_DOUBLE, (coordinates[0]+cannon_block_cycle) % sqrt_size, 
+                    0, B_local_block_size, MPI_DOUBLE, column_win);
+            // compute partial result for this block cycle
+            start_compute = MPI_Wtime();
+            for(C_index = 0, A_row = 0; A_row < A_local_block_rows; A_row++){
+                for(B_column = 0; B_column < B_local_block_columns; B_column++, C_index++){
+                    for(A_column = 0; A_column < A_local_block_columns; A_column++){
+                        C_local_block[C_index] += A_local_buffer[A_row * A_local_block_columns + A_column] *
+                            B_local_buffer[A_column * B_local_block_columns + B_column];
+                    }
+                }
+            }
+            compute_time += MPI_Wtime() - start_compute;        //each rank accumulates the compute_time
+            //wait till comunication is done
+            MPI_Win_fence(0, row_win);
+            MPI_Win_fence(0, column_win);
+            mpi_time += MPI_Wtime() - start_mpi;
+            //Swap of pointers
+            Swap = A_local_buffer_temp;
+            A_local_buffer_temp = A_local_buffer;
+            A_local_buffer = Swap;
+            Swap = B_local_buffer_temp;
+            B_local_buffer_temp = B_local_buffer;
+            B_local_buffer = Swap;
+        }
+
+        //Doing computation with the last transfered data
+        start_compute = MPI_Wtime();
         for(C_index = 0, A_row = 0; A_row < A_local_block_rows; A_row++){
             for(B_column = 0; B_column < B_local_block_columns; B_column++, C_index++){
                 for(A_column = 0; A_column < A_local_block_columns; A_column++){
@@ -248,7 +288,7 @@ int main (int argc, char **argv) {
                 }
             }
         }
-        compute_time += MPI_Wtime() - start;        //each rank accumulates the compute_time
+        compute_time += MPI_Wtime() - start_compute;        //each rank accumulates the compute_time
     }
     // cannon's algorithm end///////////////////////////////////////////////////////////////////////////////////////
 
@@ -351,8 +391,10 @@ int main (int argc, char **argv) {
     }
     free(A_local_block);
     free(A_local_buffer);
+    free(A_local_buffer_temp);
     free(B_local_block);
     free(B_local_buffer);
+    free(B_local_buffer_temp);
     free(C_local_block);
 
     // finalize MPI
