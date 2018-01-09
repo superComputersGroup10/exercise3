@@ -7,3 +7,4 @@ cannon
 *.swap
 *.pdf
 *.log
+scripts/*.csv
