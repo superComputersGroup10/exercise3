@@ -30,7 +30,6 @@ def get_var(data, mean):
 def main():
     parser = argparse.ArgumentParser(description="Generates a .csv with the time results")
     parser.add_argument("-f", "--files", nargs = '*', help="List of files with time results")
-    parser.add_argument("-b", "--baseline", help="File with baseline data used for speedup calculation")
     parser.add_argument("-o", "--output", help="Output file")
     args = parser.parse_args()
 
