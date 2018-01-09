@@ -1,0 +1,13 @@
+test  1  on A(4096x4096) and B(4096x4096)
+(4096,4096)x(4096,4096)=(4096,4096)
+Computation time: 2.489119
+MPI time:         2.443828
+
+
+test  2  on A(4096x4096) and B(4096x4096)
+(4096,4096)x(4096,4096)=(4096,4096)
+Computation time: 2.497306
+MPI time:         2.470015
+
+
+test  3  on A(4096x4096) and B(4096x4096)
