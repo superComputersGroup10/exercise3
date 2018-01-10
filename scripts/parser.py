@@ -18,6 +18,7 @@ def get_data(filename):
     r_total_times = re.findall(r'Total time:\s+(\d+.\d+)', text)
     computation_times = [float(i) for i in r_computation_times]
     mpi_times = [float(i) for i in r_mpi_times]
+    total_times = [float(i) for i in r_total_times]
     return computation_times, mpi_times, total_times
 
 
