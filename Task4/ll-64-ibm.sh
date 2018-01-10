@@ -17,10 +17,10 @@
 . /etc/profile
 . /etc/profile.d/modules.sh
 
-	for k in {0..6}
+	for k in {0..5}
 	do	
 		SUPERMUC_PHASE="Phase1"
-		CURRENT_SIZE=$((2**(6+k)))
+		CURRENT_SIZE=$((2**(6+$k)))
 		MATRIX=$CURRENT_SIZE'x'$CURRENT_SIZE
 		WRITE_FILE="$SUPERMUC_PHASE/result_$MATRIX.csv"
 		date
@@ -31,3 +31,12 @@
 			echo -e '\n' >> $WRITE_FILE
 		done
 	done
+
+date
+for i in {1..20}
+do
+	echo -e "test " $i " on A(4096x4096) and B(4096x4096)" >> $SUPERMUC_PHASE/result_4096x4096.csv
+	mpiexec -n 64 ./cannon ../cannon_matrices/4096x4096-1.in ../cannon_matrices/4096x4096-2.in >> $SUPERMUC_PHASE/result_4096x4096.csv
+	echo -e '\n' >> $SUPERMUC_PHASE/result_4096x4096.csv
+done
+
