@@ -21,6 +21,7 @@ int main (int argc, char **argv) {
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
+    double start_total = MPI_Wtime();
 	/* For square mesh */
 	sqrt_size = (int)sqrt((double) size);             
 	if(sqrt_size * sqrt_size != size){
@@ -276,6 +277,7 @@ int main (int argc, char **argv) {
 		}
 
 		compute_time += MPI_Wtime() - compute_start;        //each rank accumulates the compute_time
+    double end_total = MPI_Wtime() - start_total;
 
 	// get C parts from other processes at rank 0
 	if(rank == 0) {
@@ -310,6 +312,7 @@ int main (int argc, char **argv) {
 		printf("(%d,%d)x(%d,%d)=(%d,%d)\n", A_rows, A_columns, B_rows, B_columns, A_rows, B_columns);
 		printf("Computation time: %lf\n", compute_time);    
 		printf("MPI time:         %lf\n", mpi_time);
+		printf("Total time:       %lf\n", end_total);
 
 		if (argc == 4){
 			// present results on the screen
