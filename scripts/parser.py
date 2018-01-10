@@ -15,9 +15,10 @@ def get_data(filename):
         text = f.read()
     r_computation_times = re.findall(r'Computation time:\s+(\d+\.\d+)', text)
     r_mpi_times = re.findall(r'MPI time:\s+(\d+\.\d+)', text)
+    r_total_times = re.findall(r'Total time:\s+(\d+.\d+)', text)
     computation_times = [float(i) for i in r_computation_times]
     mpi_times = [float(i) for i in r_mpi_times]
-    return computation_times, mpi_times
+    return computation_times, mpi_times, total_times
 
 
 def get_mean(data):
@@ -35,18 +36,21 @@ def main():
 
     with open(args.output, "w") as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=',')
-        spamwriter.writerow(["Case", "Mean MPI", "Mean Comp", "Variance MPI", "Variance Comp",
-            "Standard Deviation MPI", "Standard Deviation Comp"])
+        spamwriter.writerow(["Case", "Mean MPI", "Mean Comp", "Mean Total", "Variance MPI", "Variance Comp",
+            "Variance Total", "Standard Deviation MPI", "Standard Deviation Comp", "Standard Deviation total"])
         for f in args.files:
-            computation_times, mpi_times = get_data(f)
+            computation_times, mpi_times, total_times = get_data(f)
             mean_computation = get_mean(computation_times)
             mean_mpi = get_mean(mpi_times)
+            mean_total = get_mean(total_times)
             var_computation = get_var(computation_times, mean_computation)
             var_mpi = get_var(mpi_times, mean_mpi)
+            var_total = get_var(total_times, mean_total)
             sd_computation = math.sqrt(var_computation)
             sd_mpi = math.sqrt(var_mpi)
-            spamwriter.writerow([f, mean_mpi, mean_computation, var_mpi, var_computation, sd_mpi,
-                sd_computation])
+            sd_total = math.sqrt(var_total)
+            spamwriter.writerow([f, mean_mpi, mean_computation, mean_total, var_mpi, var_computation,
+                var_total, sd_mpi, sd_computation, sd_total])
 
 
 if __name__ == "__main__":
