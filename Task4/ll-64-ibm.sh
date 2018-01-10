@@ -1,5 +1,5 @@
 #!/bin/bash 
-#@ wall_clock_limit = 00:05:00
+#@ wall_clock_limit = 00:25:00
 #@ job_name = pos-cannon-mpi-ibm
 #@ job_type = Parallel
 #@ output = cannon_64_$(jobid).out

@@ -1,5 +1,5 @@
 #!/bin/bash 
-#@ wall_clock_limit = 00:05:00
+#@ wall_clock_limit = 00:025:00
 #@ job_name = pos-cannon-mpi-ibm
 #@ job_type = Parallel
 #@ output = cannon_64_$(jobid).out
@@ -27,7 +27,7 @@
 		for i in {1..20}
 		do
 			echo -e "test " $i " on A($MATRIX) and B($MATRIX)" >> $WRITE_FILE
-			mpiexec -n 64 ./cannon ../cannon_matrices/$MATRIX-1.in ../cannon_matrices/$MATRIX-2.in t >> $WRITE_FILE
+			mpiexec -n 64 ./cannon ../cannon_matrices/$MATRIX-1.in ../cannon_matrices/$MATRIX-2.in  >> $WRITE_FILE
 			echo -e '\n' >> $WRITE_FILE
 		done
 	done
