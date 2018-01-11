@@ -1,36 +1,140 @@
-test  0  on A(2048x2048) and B(2048x2048)
-(2048,2048)x(2048,2048)=(2048,2048)
-Computation time: 0.299680
-MPI time:         0.010135
-
-
 test  1  on A(2048x2048) and B(2048x2048)
 (2048,2048)x(2048,2048)=(2048,2048)
-Computation time: 0.299866
-MPI time:         0.009965
+Computation time: 0.300165
+MPI time:         0.009183
+Total time:       2.204825
 
 
 test  2  on A(2048x2048) and B(2048x2048)
 (2048,2048)x(2048,2048)=(2048,2048)
-Computation time: 0.301035
-MPI time:         0.010045
+Computation time: 0.300261
+MPI time:         0.008377
+Total time:       2.039827
 
 
 test  3  on A(2048x2048) and B(2048x2048)
 (2048,2048)x(2048,2048)=(2048,2048)
-Computation time: 0.299680
-MPI time:         0.009267
+Computation time: 0.300397
+MPI time:         0.010355
+Total time:       2.033710
 
 
 test  4  on A(2048x2048) and B(2048x2048)
 (2048,2048)x(2048,2048)=(2048,2048)
-Computation time: 0.300245
-MPI time:         0.008493
+Computation time: 0.299981
+MPI time:         0.008830
+Total time:       2.042188
 
 
 test  5  on A(2048x2048) and B(2048x2048)
 (2048,2048)x(2048,2048)=(2048,2048)
-Computation time: 0.301023
-MPI time:         0.009276
+Computation time: 0.300844
+MPI time:         0.009889
+Total time:       2.037017
+
+
+test  6  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300870
+MPI time:         0.008901
+Total time:       2.038669
+
+
+test  7  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300451
+MPI time:         0.009556
+Total time:       2.039698
+
+
+test  8  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.302083
+MPI time:         0.009642
+Total time:       2.053611
+
+
+test  9  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300599
+MPI time:         0.009449
+Total time:       2.035247
+
+
+test  10  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300207
+MPI time:         0.009265
+Total time:       2.029134
+
+
+test  11  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300418
+MPI time:         0.011288
+Total time:       2.035789
+
+
+test  12  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300599
+MPI time:         0.008764
+Total time:       2.041366
+
+
+test  13  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300492
+MPI time:         0.009732
+Total time:       2.037446
+
+
+test  14  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300641
+MPI time:         0.008815
+Total time:       2.065642
+
+
+test  15  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300583
+MPI time:         0.009744
+Total time:       2.031876
+
+
+test  16  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300167
+MPI time:         0.009636
+Total time:       2.029230
+
+
+test  17  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300413
+MPI time:         0.009694
+Total time:       2.039091
+
+
+test  18  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300591
+MPI time:         0.009022
+Total time:       2.031118
+
+
+test  19  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.300526
+MPI time:         0.009367
+Total time:       2.033058
+
+
+test  20  on A(2048x2048) and B(2048x2048)
+(2048,2048)x(2048,2048)=(2048,2048)
+Computation time: 0.301504
+MPI time:         0.009647
+Total time:       2.026902
 
 
