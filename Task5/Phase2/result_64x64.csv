@@ -1,140 +1,140 @@
 test  1  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000012
-MPI time:         0.108304
-Total time:       0.116523
+Computation time: 0.000014
+MPI time:         0.095982
+Total time:       0.102788
 
 
 test  2  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000015
-MPI time:         0.104476
-Total time:       0.109315
+Computation time: 0.000014
+MPI time:         0.095823
+Total time:       0.101023
 
 
 test  3  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000013
-MPI time:         0.105549
-Total time:       0.110322
+Computation time: 0.000014
+MPI time:         0.097137
+Total time:       0.102583
 
 
 test  4  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000014
-MPI time:         0.106084
-Total time:       0.111829
+Computation time: 0.000013
+MPI time:         0.096253
+Total time:       0.103310
 
 
 test  5  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000013
-MPI time:         0.104851
-Total time:       0.111303
+Computation time: 0.000014
+MPI time:         0.095943
+Total time:       0.102105
 
 
 test  6  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000016
-MPI time:         0.103171
-Total time:       0.108085
+Computation time: 0.000014
+MPI time:         0.095842
+Total time:       0.100840
 
 
 test  7  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000015
-MPI time:         0.106569
-Total time:       0.113148
+Computation time: 0.000012
+MPI time:         0.095743
+Total time:       0.100758
 
 
 test  8  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000014
-MPI time:         0.104425
-Total time:       0.110518
+Computation time: 0.000010
+MPI time:         0.096234
+Total time:       0.101275
 
 
 test  9  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000014
-MPI time:         0.103152
-Total time:       0.107994
+Computation time: 0.000012
+MPI time:         0.095484
+Total time:       0.101871
 
 
 test  10  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000010
-MPI time:         0.104180
-Total time:       0.109463
+Computation time: 0.000011
+MPI time:         0.095952
+Total time:       0.101306
 
 
 test  11  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000035
-MPI time:         0.104134
-Total time:       0.110424
+Computation time: 0.000012
+MPI time:         0.095660
+Total time:       0.100586
 
 
 test  12  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000014
-MPI time:         0.104316
-Total time:       0.108963
+Computation time: 0.000013
+MPI time:         0.096234
+Total time:       0.101000
 
 
 test  13  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000013
-MPI time:         0.103891
-Total time:       0.108697
+Computation time: 0.000012
+MPI time:         0.100179
+Total time:       0.106091
 
 
 test  14  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000012
-MPI time:         0.106108
-Total time:       0.110889
+Computation time: 0.000010
+MPI time:         0.099357
+Total time:       0.105109
 
 
 test  15  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000013
-MPI time:         0.104382
-Total time:       0.109142
+Computation time: 0.000016
+MPI time:         0.100051
+Total time:       0.108043
 
 
 test  16  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000010
-MPI time:         0.111932
-Total time:       0.117651
+Computation time: 0.000015
+MPI time:         0.095030
+Total time:       0.100223
 
 
 test  17  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
 Computation time: 0.000014
-MPI time:         0.108431
-Total time:       0.114719
+MPI time:         0.095876
+Total time:       0.101063
 
 
 test  18  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000015
-MPI time:         0.104662
-Total time:       0.109504
+Computation time: 0.000012
+MPI time:         0.096007
+Total time:       0.101784
 
 
 test  19  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000011
-MPI time:         0.105952
-Total time:       0.110783
+Computation time: 0.000014
+MPI time:         0.095498
+Total time:       0.100938
 
 
 test  20  on A(64x64) and B(64x64)
 (64,64)x(64,64)=(64,64)
-Computation time: 0.000014
-MPI time:         0.105382
-Total time:       0.110105
+Computation time: 0.000018
+MPI time:         0.096050
+Total time:       0.101297
 
 

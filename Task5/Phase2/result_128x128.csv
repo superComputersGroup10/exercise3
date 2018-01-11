@@ -1,140 +1,140 @@
 test  1  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000047
-MPI time:         0.326207
-Total time:       0.337331
+Computation time: 0.000120
+MPI time:         0.112252
+Total time:       0.130209
 
 
 test  2  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000047
-MPI time:         0.325325
-Total time:       0.334519
+Computation time: 0.000056
+MPI time:         0.110664
+Total time:       0.123283
 
 
 test  3  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000047
-MPI time:         0.312156
-Total time:       0.321394
+Computation time: 0.000049
+MPI time:         0.110502
+Total time:       0.123876
 
 
 test  4  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000048
-MPI time:         0.318925
-Total time:       0.328177
+Computation time: 0.000055
+MPI time:         0.110506
+Total time:       0.125855
 
 
 test  5  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000047
-MPI time:         0.307134
-Total time:       0.316183
+Computation time: 0.000044
+MPI time:         0.110353
+Total time:       0.119878
 
 
 test  6  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000041
-MPI time:         0.335703
-Total time:       0.345035
+Computation time: 0.000056
+MPI time:         0.111759
+Total time:       0.121124
 
 
 test  7  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000049
-MPI time:         0.308994
-Total time:       0.318258
+Computation time: 0.000190
+MPI time:         0.109259
+Total time:       0.119017
 
 
 test  8  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000038
-MPI time:         0.329882
-Total time:       0.339006
+Computation time: 0.000043
+MPI time:         0.110322
+Total time:       0.119781
 
 
 test  9  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000046
-MPI time:         0.313770
-Total time:       0.324667
+Computation time: 0.000060
+MPI time:         0.110320
+Total time:       0.119737
 
 
 test  10  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000042
-MPI time:         0.329295
-Total time:       0.338581
+Computation time: 0.000052
+MPI time:         0.112791
+Total time:       0.123033
 
 
 test  11  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000043
-MPI time:         0.330063
-Total time:       0.339403
+Computation time: 0.000062
+MPI time:         0.113529
+Total time:       0.122985
 
 
 test  12  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000043
-MPI time:         0.321195
-Total time:       0.332336
+Computation time: 0.000063
+MPI time:         0.111234
+Total time:       0.121075
 
 
 test  13  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000050
-MPI time:         0.328394
-Total time:       0.338964
+Computation time: 0.000055
+MPI time:         0.110894
+Total time:       0.120042
 
 
 test  14  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000046
-MPI time:         0.316089
-Total time:       0.325648
+Computation time: 0.000060
+MPI time:         0.110169
+Total time:       0.120006
 
 
 test  15  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000047
-MPI time:         0.303262
-Total time:       0.312572
+Computation time: 0.000056
+MPI time:         0.110783
+Total time:       0.124261
 
 
 test  16  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000052
-MPI time:         0.313260
-Total time:       0.324637
+Computation time: 0.000071
+MPI time:         0.109468
+Total time:       0.122509
 
 
 test  17  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000047
-MPI time:         0.313739
-Total time:       0.322961
+Computation time: 0.000056
+MPI time:         0.109745
+Total time:       0.118891
 
 
 test  18  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000052
-MPI time:         0.324212
-Total time:       0.333720
+Computation time: 0.000062
+MPI time:         0.111491
+Total time:       0.123193
 
 
 test  19  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000047
-MPI time:         0.322711
-Total time:       0.334453
+Computation time: 0.000060
+MPI time:         0.112266
+Total time:       0.124982
 
 
 test  20  on A(128x128) and B(128x128)
 (128,128)x(128,128)=(128,128)
-Computation time: 0.000049
-MPI time:         0.313931
-Total time:       0.326303
+Computation time: 0.000058
+MPI time:         0.111369
+Total time:       0.121986
 
 
