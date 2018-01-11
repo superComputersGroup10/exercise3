@@ -1,140 +1,140 @@
 test  1  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001620
-MPI time:         0.105184
-Total time:       0.217739
+Computation time: 0.001619
+MPI time:         0.106887
+Total time:       0.218918
 
 
 test  2  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001637
-MPI time:         0.108865
-Total time:       0.214786
+Computation time: 0.001622
+MPI time:         0.105345
+Total time:       0.211406
 
 
 test  3  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001695
-MPI time:         0.106795
-Total time:       0.213537
+Computation time: 0.001589
+MPI time:         0.113452
+Total time:       0.220006
 
 
 test  4  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001658
-MPI time:         0.105823
-Total time:       0.211739
+Computation time: 0.001675
+MPI time:         0.107887
+Total time:       0.214972
 
 
 test  5  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001610
-MPI time:         0.104094
-Total time:       0.209954
+Computation time: 0.001653
+MPI time:         0.106026
+Total time:       0.212684
 
 
 test  6  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001652
-MPI time:         0.107584
-Total time:       0.214932
+Computation time: 0.001635
+MPI time:         0.111221
+Total time:       0.218566
 
 
 test  7  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001615
-MPI time:         0.107527
-Total time:       0.213593
+Computation time: 0.001636
+MPI time:         0.109521
+Total time:       0.215743
 
 
 test  8  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001632
-MPI time:         0.108483
-Total time:       0.215296
+Computation time: 0.001634
+MPI time:         0.102945
+Total time:       0.209407
 
 
 test  9  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001652
-MPI time:         0.106653
-Total time:       0.213463
+Computation time: 0.001606
+MPI time:         0.105741
+Total time:       0.211709
 
 
 test  10  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001573
-MPI time:         0.109308
-Total time:       0.215486
+Computation time: 0.001600
+MPI time:         0.105404
+Total time:       0.213614
 
 
 test  11  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001673
-MPI time:         0.107202
-Total time:       0.214304
+Computation time: 0.001647
+MPI time:         0.105441
+Total time:       0.211373
 
 
 test  12  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001625
-MPI time:         0.105861
-Total time:       0.212245
+Computation time: 0.001615
+MPI time:         0.104299
+Total time:       0.210671
 
 
 test  13  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001602
-MPI time:         0.106923
-Total time:       0.213265
+Computation time: 0.001614
+MPI time:         0.107509
+Total time:       0.213337
 
 
 test  14  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001599
-MPI time:         0.108100
-Total time:       0.214391
+Computation time: 0.001623
+MPI time:         0.104253
+Total time:       0.210481
 
 
 test  15  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001624
-MPI time:         0.108850
-Total time:       0.215756
+Computation time: 0.001613
+MPI time:         0.109342
+Total time:       0.223553
 
 
 test  16  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001626
-MPI time:         0.108286
-Total time:       0.216679
+Computation time: 0.001630
+MPI time:         0.103196
+Total time:       0.208668
 
 
 test  17  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001623
-MPI time:         0.105354
-Total time:       0.219655
+Computation time: 0.001622
+MPI time:         0.106669
+Total time:       0.213976
 
 
 test  18  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001625
-MPI time:         0.108554
-Total time:       0.214701
+Computation time: 0.001631
+MPI time:         0.105021
+Total time:       0.210546
 
 
 test  19  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001613
-MPI time:         0.106002
-Total time:       0.211802
+Computation time: 0.001657
+MPI time:         0.114087
+Total time:       0.219941
 
 
 test  20  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001603
-MPI time:         0.108941
-Total time:       0.215472
+Computation time: 0.001638
+MPI time:         0.105176
+Total time:       0.210819
 
 

@@ -1,140 +1,140 @@
 test  1  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.499128
-MPI time:         2.490587
-Total time:       9.555767
+Computation time: 2.497828
+MPI time:         2.795926
+Total time:       9.559749
 
 
 test  2  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.512432
-MPI time:         2.502207
-Total time:       9.429330
+Computation time: 2.501807
+MPI time:         2.760327
+Total time:       9.349048
 
 
 test  3  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.491554
-MPI time:         2.444722
-Total time:       9.359874
+Computation time: 2.495406
+MPI time:         2.785322
+Total time:       9.363946
 
 
 test  4  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.501197
-MPI time:         2.449284
-Total time:       9.339957
+Computation time: 2.495704
+MPI time:         2.798890
+Total time:       9.379143
 
 
 test  5  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.496014
-MPI time:         2.445295
-Total time:       9.423236
+Computation time: 2.495063
+MPI time:         2.787893
+Total time:       9.376287
 
 
 test  6  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.500078
-MPI time:         2.454391
-Total time:       9.382121
+Computation time: 2.491369
+MPI time:         2.729131
+Total time:       9.319870
 
 
 test  7  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.501240
-MPI time:         2.414219
-Total time:       9.335414
+Computation time: 2.513295
+MPI time:         2.755271
+Total time:       9.349926
 
 
 test  8  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.497464
-MPI time:         2.514368
-Total time:       9.448469
+Computation time: 2.506913
+MPI time:         2.790716
+Total time:       9.372393
 
 
 test  9  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.493980
-MPI time:         2.421325
-Total time:       9.340545
+Computation time: 2.611814
+MPI time:         3.098020
+Total time:       9.695278
 
 
 test  10  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.500610
-MPI time:         2.490854
-Total time:       9.444622
+Computation time: 2.501520
+MPI time:         2.931314
+Total time:       9.519476
 
 
 test  11  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.505982
-MPI time:         2.467941
-Total time:       9.372349
+Computation time: 2.499646
+MPI time:         2.763379
+Total time:       9.396815
 
 
 test  12  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.494457
-MPI time:         2.481999
-Total time:       9.373004
+Computation time: 2.497230
+MPI time:         2.744222
+Total time:       9.336779
 
 
 test  13  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.496163
-MPI time:         2.422409
-Total time:       9.324399
+Computation time: 2.501705
+MPI time:         2.827170
+Total time:       9.507324
 
 
 test  14  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.496197
-MPI time:         2.450818
-Total time:       9.360991
+Computation time: 2.497982
+MPI time:         2.800206
+Total time:       9.393539
 
 
 test  15  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.498945
-MPI time:         2.485224
-Total time:       9.429724
+Computation time: 2.496049
+MPI time:         2.798561
+Total time:       9.412767
 
 
 test  16  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.494130
-MPI time:         2.479185
-Total time:       9.392974
+Computation time: 2.494849
+MPI time:         2.774489
+Total time:       9.371255
 
 
 test  17  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.506708
-MPI time:         2.452204
-Total time:       9.369903
+Computation time: 2.499252
+MPI time:         2.793574
+Total time:       9.415601
 
 
 test  18  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.493881
-MPI time:         2.633045
-Total time:       9.569866
+Computation time: 2.505839
+MPI time:         2.822312
+Total time:       9.421261
 
 
 test  19  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.505693
-MPI time:         2.514095
-Total time:       9.442491
+Computation time: 2.865223
+MPI time:         3.044285
+Total time:       9.639169
 
 
 test  20  on A(4096x4096) and B(4096x4096)
 (4096,4096)x(4096,4096)=(4096,4096)
-Computation time: 2.492513
-MPI time:         2.456286
-Total time:       9.384419
+Computation time: 2.493317
+MPI time:         2.862197
+Total time:       9.487216
 
 
