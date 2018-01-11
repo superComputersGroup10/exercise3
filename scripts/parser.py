@@ -19,7 +19,9 @@ def get_data(filename):
     computation_times = [float(i) for i in r_computation_times]
     mpi_times = [float(i) for i in r_mpi_times]
     total_times = [float(i) for i in r_total_times]
-    return computation_times, mpi_times, total_times
+    r_fence_times = re.findall(r'Fence time:\s+(\d+.\d+)', text)
+    fence_times = [float(i) for i in r_fence_times]
+    return computation_times, mpi_times, total_times, fence_times
 
 
 def get_mean(data):
@@ -37,10 +39,11 @@ def main():
 
     with open(args.output, "w") as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=',')
-        spamwriter.writerow(["Case", "Mean MPI", "Mean Comp", "Mean Total", "Variance MPI", "Variance Comp",
-            "Variance Total", "Standard Deviation MPI", "Standard Deviation Comp", "Standard Deviation total"])
+        spamwriter.writerow(["Case", "Mean MPI", "Mean Comp", "Mean Total", "Mean Fence", "Variance MPI",
+            "Variance Comp", "Variance Total", "Variance Fence", "Standard Deviation MPI",
+            "Standard Deviation Comp", "Standard Deviation total", "Standar Deviation Fence"])
         for f in args.files:
-            computation_times, mpi_times, total_times = get_data(f)
+            computation_times, mpi_times, total_times, fence_times = get_data(f)
             mean_computation = get_mean(computation_times)
             mean_mpi = get_mean(mpi_times)
             mean_total = get_mean(total_times)
@@ -50,8 +53,16 @@ def main():
             sd_computation = math.sqrt(var_computation)
             sd_mpi = math.sqrt(var_mpi)
             sd_total = math.sqrt(var_total)
-            spamwriter.writerow([f, mean_mpi, mean_computation, mean_total, var_mpi, var_computation,
-                var_total, sd_mpi, sd_computation, sd_total])
+            if len(fence_times) == 0:
+                mean_fence = "Not found"
+                var_fence = "Not found"
+                sd_fence = "Not found"
+            else:
+                mean_fence = get_mean(fence_times)
+                var_fence = get_var(fence_times, mean_fence)
+                sd_fence = math.sqrt(var_fence)
+            spamwriter.writerow([f, mean_mpi, mean_computation, mean_total, mean_fence, var_mpi,
+                var_computation, var_total, var_fence, sd_mpi, sd_computation, sd_total, sd_fence])
 
 
 if __name__ == "__main__":
