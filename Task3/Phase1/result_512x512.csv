@@ -1,36 +1,140 @@
-test  0  on A(512x512) and B(512x512)
-(512,512)x(512,512)=(512,512)
-Computation time: 0.001592
-MPI time:         0.001608
-
-
 test  1  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001557
-MPI time:         0.001805
+Computation time: 0.001565
+MPI time:         0.001778
+Total time:       0.116372
 
 
 test  2  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001571
-MPI time:         0.001747
+Computation time: 0.001555
+MPI time:         0.001733
+Total time:       0.109695
 
 
 test  3  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001572
-MPI time:         0.001798
+Computation time: 0.001565
+MPI time:         0.001807
+Total time:       0.108738
 
 
 test  4  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001555
-MPI time:         0.001909
+Computation time: 0.001568
+MPI time:         0.001751
+Total time:       0.109123
 
 
 test  5  on A(512x512) and B(512x512)
 (512,512)x(512,512)=(512,512)
-Computation time: 0.001570
-MPI time:         0.001786
+Computation time: 0.001574
+MPI time:         0.001778
+Total time:       0.108760
+
+
+test  6  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001564
+MPI time:         0.001781
+Total time:       0.108962
+
+
+test  7  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001637
+MPI time:         0.001760
+Total time:       0.109508
+
+
+test  8  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001609
+MPI time:         0.001821
+Total time:       0.109397
+
+
+test  9  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001583
+MPI time:         0.001768
+Total time:       0.109080
+
+
+test  10  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001564
+MPI time:         0.001772
+Total time:       0.110390
+
+
+test  11  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001564
+MPI time:         0.001735
+Total time:       0.110302
+
+
+test  12  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001560
+MPI time:         0.001910
+Total time:       0.108810
+
+
+test  13  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001562
+MPI time:         0.001830
+Total time:       0.109562
+
+
+test  14  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001565
+MPI time:         0.001905
+Total time:       0.110487
+
+
+test  15  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001563
+MPI time:         0.001716
+Total time:       0.108786
+
+
+test  16  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001569
+MPI time:         0.001698
+Total time:       0.108733
+
+
+test  17  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001582
+MPI time:         0.001791
+Total time:       0.108843
+
+
+test  18  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001591
+MPI time:         0.001652
+Total time:       0.108799
+
+
+test  19  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001665
+MPI time:         0.001698
+Total time:       0.110132
+
+
+test  20  on A(512x512) and B(512x512)
+(512,512)x(512,512)=(512,512)
+Computation time: 0.001562
+MPI time:         0.001744
+Total time:       0.109081
 
 
