@@ -1,0 +1,58 @@
+TO UNDERSTAND DELIVERABLES
+
+=====================================================================================================
+contents of scripts directory: 
+
+1. parser.py : file that parses the results and calculates the mean, variance and standard deviations of various run time results. DO NOT RUN THE PYTHON FILE MANUALLY!!
+
+
+2. statistics.sh: This bash script calls the parser to parse the results. 
+TODO: EDIT statistics.sh  BEFORE RUNNING THE BASH SCRIPT:
+    (i) In line 6 : change the variable $TASK to appropriate task (either Task3, Task4 or Task5)
+    (ii) In line 7: change the variaboe $PHASE to appropriate Phase of SuperMUC (Phase1 or Phase2)
+
+After doing the above changes, run the script on the command line. The results of parsing will be saved
+in the same 'script directory'
+
+3. The parsed results for each combination of SuperMUC phase and tasks. that have been used for final report 
+
+=====================================================================================================
+
+
+
+=====================================================================================================
+contents of task3 directory: 
+
+1. a directory named "00_buggy implementation" with its own readme (called README_TO_EXPOSE_BUG) to expose the bug 
+2. corrected cannon.c source code to be run on supermuc with modified load leveller
+3. The required make file
+4. directories "phase1" and "phase2" with the final results used for writing the report
+
+
+=====================================================================================================
+
+
+
+=====================================================================================================
+Contents of Task4 directory: 
+
+1. Implementation with non-blocking algorithm of cannon's matrix multiplication
+2. loadleveller script for batch job submission on SuperMUC
+3. The required make file
+4. Directories "Phase1" and "Phase2" with the final results used for writing the report
+
+
+=====================================================================================================
+
+
+
+=====================================================================================================
+Contents of Task4 directory: 
+
+1. Implementation with one-sided communication in cannon's matrix multiplication algorithm
+2. loadleveller script for batch job submission on SuperMUC
+3. the required make file
+4. Directories "Phase1" and "Phase2" with the final results used for writing the report
+
+
+=====================================================================================================

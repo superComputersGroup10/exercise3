@@ -1,0 +1,25 @@
+test  0  on A(4x4) and B(4x4)
+(4,4)x(4,4)=(4,4)
+Computation time: 0.000000
+MPI time:         0.000041
+test  1  on A(4x4) and B(4x4)
+(4,4)x(4,4)=(4,4)
+Computation time: 0.000002
+MPI time:         0.000033
+test  2  on A(4x4) and B(4x4)
+(4,4)x(4,4)=(4,4)
+Computation time: 0.000000
+MPI time:         0.000036
+test  3  on A(4x4) and B(4x4)
+(4,4)x(4,4)=(4,4)
+Computation time: 0.000001
+MPI time:         0.000027
+test  4  on A(4x4) and B(4x4)
+(4,4)x(4,4)=(4,4)
+Computation time: 0.000001
+MPI time:         0.000036
+test  5  on A(4x4) and B(4x4)
+(4,4)x(4,4)=(4,4)
+Computation time: 0.000000
+MPI time:         0.000043
+

@@ -1,0 +1,160 @@
+test  1  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.020570
+MPI time:         0.245481
+Total time:       0.862476
+Fence time:       0.224388
+
+
+test  2  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.022571
+MPI time:         0.242582
+Total time:       0.842514
+Fence time:       0.219388
+
+
+test  3  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.017282
+MPI time:         0.247197
+Total time:       0.847922
+Fence time:       0.229426
+
+
+test  4  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.019879
+MPI time:         0.261068
+Total time:       0.862856
+Fence time:       0.240500
+
+
+test  5  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.021342
+MPI time:         0.248955
+Total time:       0.850673
+Fence time:       0.226976
+
+
+test  6  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.017281
+MPI time:         0.254447
+Total time:       0.852983
+Fence time:       0.236564
+
+
+test  7  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.022093
+MPI time:         0.245311
+Total time:       0.853811
+Fence time:       0.222547
+
+
+test  8  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.017092
+MPI time:         0.245032
+Total time:       0.852382
+Fence time:       0.227405
+
+
+test  9  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.021842
+MPI time:         0.246783
+Total time:       0.843784
+Fence time:       0.224492
+
+
+test  10  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.017143
+MPI time:         0.248369
+Total time:       0.845802
+Fence time:       0.230750
+
+
+test  11  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.018439
+MPI time:         0.250328
+Total time:       0.860500
+Fence time:       0.231370
+
+
+test  12  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.017735
+MPI time:         0.245863
+Total time:       0.841985
+Fence time:       0.227588
+
+
+test  13  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.019700
+MPI time:         0.248591
+Total time:       0.847794
+Fence time:       0.228315
+
+
+test  14  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.017568
+MPI time:         0.248139
+Total time:       0.845861
+Fence time:       0.230026
+
+
+test  15  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.017267
+MPI time:         0.250809
+Total time:       0.859934
+Fence time:       0.233038
+
+
+test  16  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.017153
+MPI time:         0.249366
+Total time:       0.849966
+Fence time:       0.231781
+
+
+test  17  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.019043
+MPI time:         0.257212
+Total time:       0.851266
+Fence time:       0.237683
+
+
+test  18  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.018201
+MPI time:         0.250466
+Total time:       0.849304
+Fence time:       0.231871
+
+
+test  19  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.020113
+MPI time:         0.270261
+Total time:       0.864180
+Fence time:       0.249674
+
+
+test  20  on A(1024x1024) and B(1024x1024)
+(1024,1024)x(1024,1024)=(1024,1024)
+Computation time: 0.020001
+MPI time:         0.261964
+Total time:       0.860511
+Fence time:       0.241474
+
+

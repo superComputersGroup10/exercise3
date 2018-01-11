@@ -1,0 +1,24 @@
+test  0  on A(8x16) and B(16x8)
+(8,16)x(16,8)=(8,8)
+Computation time: 0.000004
+MPI time:         0.000086
+test  1  on A(8x16) and B(16x8)
+(8,16)x(16,8)=(8,8)
+Computation time: 0.000005
+MPI time:         0.000113
+test  2  on A(8x16) and B(16x8)
+(8,16)x(16,8)=(8,8)
+Computation time: 0.000004
+MPI time:         0.000079
+test  3  on A(8x16) and B(16x8)
+(8,16)x(16,8)=(8,8)
+Computation time: 0.000004
+MPI time:         0.000082
+test  4  on A(8x16) and B(16x8)
+(8,16)x(16,8)=(8,8)
+Computation time: 0.000004
+MPI time:         0.000082
+test  5  on A(8x16) and B(16x8)
+(8,16)x(16,8)=(8,8)
+Computation time: 0.000004
+MPI time:         0.000085

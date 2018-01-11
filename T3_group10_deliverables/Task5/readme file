@@ -1,0 +1,14 @@
+To run the cannon matrix multiplication do the following steps:
+
+1. issue make command
+
+2. copy the input matrix multiplication files from the cannon_matrices folder to cannon_source folder
+
+3. to run the executable type : mpiexec -n [number of processors] ./cannon [inputfile1] [input file2] [test] 
+Note : the last command line arugment [test] is optional if the user wants to see the output on the terminal
+
+===================================================================================================================================
+avg.sh
+this is a bash file created as a part of part 3 to calculate average of run times over 5 runs for each sample of the matrix 
+multiplication. This can be run on the superMUC when after the results are available
+===================================================================================================================================

@@ -1,0 +1,38 @@
+================================================================================================================
+PURPOSE OF THIS README
+
+This file gives the infomation about the bug in the original implementation of cannon algorimthm provided in assignment 3
+
+THE BUG CAN BE EXPOSED ON LOCAL PC. NO NEED FOR EXPENSIVE RUNS ON SUPERMUC
+=================================================================================================================
+
+
+
+=================================================================================================================
+contnents of 00_buggy_implementation
+
+1. directory called "bug_exposing_matrices" that has the matrices that our group used to expose the bug
+provided in original implenetation of cannon's algorithm
+2. directory called "bug_results" that contains the results of runs to expose the bug
+3. cannon.c : the faulty code 
+4. make file to compile cannon.c source code
+=================================================================================================================
+
+
+
+=================================================================================================================
+HOW TO EXPOSE THE BUG ON LOCAL PC
+
+The input files for cannon algorithm provided in this directory expose the bug in the original implementation
+provided along with the 3rd assignment. 
+
+The bug can be exposed by using the bash_script : bug_expose.sh in the parent directory of task3. 
+
+Step 1: on terminal run the command : ./bug_expose.sh
+
+Step 2: in the directory "bug_results" open the file "results.csv" to see the results
+
+
+=================================================================================================================
+
+
