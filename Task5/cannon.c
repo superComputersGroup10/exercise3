@@ -215,7 +215,7 @@ int main (int argc, char **argv) {
     // cannon's algorithm //////////////////////////////////////////////////////////////////////////////////////////
     // doing the operationg with the local data
     int cannon_block_cycle;
-    double compute_time = 0, mpi_time = 0, start_mpi, start_compute;   //all ranks declare compute_time, mpi_time
+    double compute_time = 0, mpi_time = 0, fence_time = 0, start_mpi, start_compute, start_fence;   
     int C_index, A_row, A_column, B_column;
 
 
@@ -243,8 +243,10 @@ int main (int argc, char **argv) {
     compute_time += MPI_Wtime() - start_compute;        //each rank accumulates the compute_time
 
     if(size > 1){ //continue with the comunication and overlaped computation 
+        start_fence = MPI_Wtime(); 
         MPI_Win_fence(0, row_win);
         MPI_Win_fence(0, column_win);
+        fence_time += MPI_Wtime() - start_fence;
         mpi_time += MPI_Wtime() - start_mpi;
 
         for(cannon_block_cycle = 2; cannon_block_cycle < sqrt_size; cannon_block_cycle++){
@@ -267,8 +269,10 @@ int main (int argc, char **argv) {
             }
             compute_time += MPI_Wtime() - start_compute;        //each rank accumulates the compute_time
             //wait till comunication is done
+            start_fence = MPI_Wtime(); 
             MPI_Win_fence(0, row_win);
             MPI_Win_fence(0, column_win);
+            fence_time += MPI_Wtime() - start_fence;
             mpi_time += MPI_Wtime() - start_mpi;
             //Swap of pointers
             Swap = A_local_buffer_temp;
@@ -330,6 +334,7 @@ int main (int argc, char **argv) {
         printf("Computation time: %lf\n", compute_time);    
         printf("MPI time:         %lf\n", mpi_time);
         printf("Total time:       %lf\n", end_total);
+        printf("Fence time:       %lf\n", fence_time);
 
         if (argc == 4){
             // present results on the screen
